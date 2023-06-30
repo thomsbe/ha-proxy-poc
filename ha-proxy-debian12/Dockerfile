@@ -1,4 +1,4 @@
-FROM debian:11.0-slim
+FROM debian:12.0-slim
 
 RUN apt-get update && apt-get install -y haproxy netcat-openbsd socat && rm -rf /var/lib/apt/lists/*
 
