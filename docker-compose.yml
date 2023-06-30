@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  static1:
+    build: simple-server
+    volumes:
+    - ./static1:/home/static
+  
+  static2:
+    build: simple-server
+    volumes:
+      - ./static2:/home/static
+
+  ha-proxy:
+    build: ha-proxy-debian12
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - "80:80"
+      - "1936:1936"
+    links:
+      - static1
+      - static2
+    
